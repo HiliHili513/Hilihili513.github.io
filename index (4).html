@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kentucky Fried Chicken</title>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --red: #c0392b;
+      --cream: #f5f0e8;
+      --ink: #1a1208;
+      --faded: #7a6a54;
+      --highlight: #e8d87a;
+      --stamp-red: rgba(192,57,43,0.15);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #d9d0be;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(0,0,0,0.06) 28px),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+      font-family: 'Courier Prime', monospace;
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 40px 20px 80px;
+    }
+
+    .page {
+      background: var(--cream);
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 60px 70px;
+      box-shadow: 4px 4px 0 #b5a98a, 8px 8px 0 #a09080, 12px 12px 20px rgba(0,0,0,0.25);
+      position: relative;
+      transform: rotate(-0.3deg);
+    }
+
+    .page::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 69px,
+        rgba(192,57,43,0.15) 70px,
+        rgba(192,57,43,0.15) 71px
+      );
+      pointer-events: none;
+    }
+
+    .stamp {
+      position: absolute;
+      top: 40px;
+      right: 55px;
+      width: 110px;
+      height: 110px;
+      border: 4px solid var(--red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'Special Elite', cursive;
+      font-size: 10px;
+      color: var(--red);
+      opacity: 0.7;
+      transform: rotate(15deg);
+      line-height: 1.3;
+      padding: 10px;
+    }
+
+    .header-block {
+      margin-bottom: 36px;
+    }
+
+    .header-block .meta {
+      font-size: 13px;
+      color: var(--faded);
+      line-height: 2;
+      font-style: italic;
+    }
+
+    h1 {
+      font-family: 'Special Elite', cursive;
+      font-size: 2.8rem;
+      line-height: 1.1;
+      margin: 18px 0 6px;
+      color: var(--ink);
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: var(--faded);
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+
+    hr {
+      border: none;
+      border-top: 2px solid var(--ink);
+      margin: 24px 0;
+    }
+
+    .section {
+      margin-bottom: 32px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadein 0.6s forwards;
+    }
+
+    @keyframes fadein {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section:nth-child(1) { animation-delay: 0.1s; }
+    .section:nth-child(2) { animation-delay: 0.25s; }
+    .section:nth-child(3) { animation-delay: 0.4s; }
+    .section:nth-child(4) { animation-delay: 0.55s; }
+    .section:nth-child(5) { animation-delay: 0.7s; }
+    .section:nth-child(6) { animation-delay: 0.85s; }
+    .section:nth-child(7) { animation-delay: 1.0s; }
+    .section:nth-child(8) { animation-delay: 1.15s; }
+
+    p {
+      font-size: 15px;
+      line-height: 1.85;
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+
+    .highlight {
+      background: var(--highlight);
+      padding: 2px 4px;
+    }
+
+    .underline {
+      text-decoration: underline;
+      text-decoration-style: wavy;
+      text-decoration-color: var(--red);
+    }
+
+    .fn {
+      position: relative;
+      display: inline-block;
+    }
+
+    .fn-marker {
+      color: var(--red);
+      font-size: 11px;
+      vertical-align: super;
+      font-family: 'Special Elite', cursive;
+      cursor: pointer;
+      border-bottom: 1px dotted var(--red);
+      user-select: none;
+    }
+
+    .fn-bubble {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fffde7;
+      border: 1.5px solid #c8a800;
+      border-radius: 4px;
+      padding: 10px 13px;
+      font-size: 12px;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.55;
+      width: 260px;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.12);
+      z-index: 100;
+      white-space: normal;
+    }
+
+    .fn-bubble::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: #c8a800;
+    }
+
+    .fn-bubble::before {
+      content: '';
+      position: absolute;
+      top: calc(100% + 2px);
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: #fffde7;
+      z-index: 1;
+    }
+
+    .fn.open .fn-bubble {
+      display: block;
+    }
+
+    /* flip upward bubbles that would go off-screen left/right */
+    .fn-bubble.flip-left {
+      left: 0;
+      transform: none;
+    }
+    .fn-bubble.flip-left::after,
+    .fn-bubble.flip-left::before {
+      left: 20px;
+    }
+    .fn-bubble.flip-right {
+      left: auto;
+      right: 0;
+      transform: none;
+    }
+    .fn-bubble.flip-right::after,
+    .fn-bubble.flip-right::before {
+      left: auto;
+      right: 20px;
+    }
+
+    .works-cited {
+      margin-top: 40px;
+      border-top: 2px solid var(--ink);
+      padding-top: 20px;
+    }
+
+    .works-cited h2 {
+      font-family: 'Special Elite', cursive;
+      font-size: 1rem;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .works-cited p {
+      font-size: 12px;
+      text-align: left;
+      padding-left: 24px;
+      text-indent: -24px;
+      color: var(--faded);
+    }
+
+    .margin-note {
+      position: absolute;
+      left: -160px;
+      width: 140px;
+      font-size: 11px;
+      font-style: italic;
+      color: var(--red);
+      opacity: 0.75;
+      line-height: 1.4;
+      text-align: right;
+    }
+
+    .rabbit-hole {
+      font-family: 'Special Elite', cursive;
+      font-size: 14px;
+      line-height: 2;
+      text-align: center;
+      margin: 24px auto;
+      transform: rotate(2deg);
+      max-width: 440px;
+    }
+
+    .rabbit-hole span {
+      display: block;
+    }
+    .rabbit-hole span:nth-child(2) { padding-left: 20px; }
+    .rabbit-hole span:nth-child(3) { padding-left: 40px; }
+    .rabbit-hole span:nth-child(4) { padding-left: 55px; }
+    .rabbit-hole span:nth-child(5) { padding-left: 65px; }
+    .rabbit-hole span:nth-child(6) { padding-left: 70px; }
+
+    blockquote {
+      border-left: 3px solid var(--red);
+      padding-left: 18px;
+      margin: 20px 0;
+      font-style: italic;
+      color: var(--faded);
+    }
+
+    .final-line {
+      font-family: 'Special Elite', cursive;
+      font-size: 1.2rem;
+      text-align: center;
+      margin-top: 30px;
+      color: var(--red);
+    }
+
+    @media (max-width: 600px) {
+      .page { padding: 40px 28px; transform: none; }
+      h1 { font-size: 2rem; }
+      .margin-note { display: none; }
+      .stamp { top: 16px; right: 16px; width: 80px; height: 80px; font-size: 8px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="stamp">NEEDS<br>REVISION<br>★★★★★<br>A+/F</div>
+
+  <div class="header-block section">
+    <div class="meta">
+      Hili Hili Mariachi &nbsp;|&nbsp; American Lit / Mexican Lit &nbsp;|&nbsp; 19 May, 2023
+    </div>
+    <h1>Kentucky Fried Chicken</h1>
+    <div class="subtitle">A Treatise on Trains, Thought, and the Temerity of the Bourgeoisie</div>
+    <hr/>
+  </div>
+
+  <div class="section" style="position:relative;">
+    <p>
+      I like trains. I really like trains. My thesis is that <span class="highlight">I love to ride on trains</span>, taking me here and there. Sometimes, I don't pay for my ticket. Sometimes, the ticketmaster asks me to get off the train. Sometimes, I tell the ticketmaster that I can't, since the train is still moving and my mother wouldn't like that I'm doing something dangerous like jumping off a moving train traveling at <span class="underline">lower limit velocities of 55mph</span>. Sometimes, the ticketmaster chuckles and grins like the Grinch, pulling the emergency stop. Sometimes, I am forced to walk a lonely road, the only road that I have ever known. Sometimes, I don't know where I might end up….
+    </p>
+    <p>
+      So my favorite kind of train is a train of thought. Like, you ever wonder how your thoughts can carry you across multiple different areas of life, inevitably ending back up right where you started, dozing off in Circuits class, back to reality — oh there goes gravity.
+    </p>
+    <p>
+      OK…Gravity makes no sense. Like what does the earth have against me leaving? Is the earth a toxic mother never willing to let her children go beyond the nest, only to end up right back where we started, sitting at the dinner table, drinking a glass of red, red wine…<em>its up to yoooouu!</em> My grade is up to you, only you can decide its fate now…
+    </p>
+    <p>
+      You have never seen a paper like this before, have you? Like isn't it scary that a student has the omnipotent power to make you read literally anything they submit, and you still have to give them a grade based on their work performance or lack thereof?
+    </p>
+  </div>
+
+  <div class="section">
+    <p>
+      I henceforth, proceeding onward, duly carry the duty to bear the burden of, withstanding here on out, the <em>audacity</em>… the <em>temerity</em>… the <em>effrontery</em> of a grossly emboldened and pathetically written treatise of the commonwealth for all students, men and women, to accept the responsibly inclined ethics of a morally depraved nation like our own — hoping to convert their minds, by means of the catalyst of my wisdom within the reaction of the sacraments, producing sanctifying grace, the heterogeneous solution of creating a gradient of suffering within the soul of our brothers and sisters, the touchstone of love itself by which the reality of truth is perceived, seeking to refine and purify the side products of charity and forgiveness.
+    </p>
+    <p>
+      But we also know, sadly, that the highest conversion of these vessels is, on an upper bound 95% confidence interval, maybe an optimistic 5%, rounding up of course… <span class="highlight">way up!!!</span> In theory, the vessel could undergo constant reinoculation of facts and reason to further increase the conversion of such a reaction and higher volumes of grace. But at its maximum conversion, the selectivity of sainthood within the general continuously stirred tank reactor we call America still approaches zero on average.<span class="fn"><span class="fn-marker">1</span><span class="fn-bubble">This statistic is taken from the large statistical increase of emotionally driven idiots in the world who refuse to listen to a simple argument, even if they respectfully disagree with it using basic intellect and reason… I'm talking to you 'Timmy' who took my candy bar on the monkey bars back in Kindergarten. If that's even your real name!!!</span></span> The future is not looking bright. But, as the highly revered Romantic once said, <em>"The sun shines brightest in the middle of the cold, stormy, wintery December…"</em><span class="fn"><span class="fn-marker">2</span><span class="fn-bubble">They never said this. It actually comes from a girl's inspiration wall of quotes to fight depression on Pinterest… probably.</span></span>
+    </p>
+  </div>
+
+  <div class="section">
+    <p>
+      My favorite train of all time is Thomas the Tank Engine. He is blue dabadee daboh dye, and blue is my favorite color. I also like Gordon, because he is blue dabadee daboh dye, and blue is my favorite color. I also really really like Edward — oh, why you ask? Ha Ha Ha, because <span class="underline">blue dabadee daboh dye</span>, and blue is my favorite color.
+    </p>
+    <p>
+      I also love Cranky because he is a sad, lonely, depressed college student who never eats or sleeps and barely has time to fulfill his secret burning love of reading John Keats and John Milton and John Donne and John the gospel writer and John Cheever and John Ronald Reuel Tolkien (basically anyone named John) because engineering school has taken more from him than the <em>bour·geoi·sie</em> could have ever stolen from him — which is why he is always cranky… and blue is my favorite color.
+    </p>
+    <p>
+      Oh wait, the Grinch is green and his smile reminds me of the evil ticketmaster who kicked me off a train I didn't pay for. Nevermind, I hate Percy.
+    </p>
+    <blockquote>
+      "They seek him heah, they seek him theah, those Frenchies<span class="fn"><span class="fn-marker">3</span><span class="fn-bubble">I hope this term is offensive to French people.</span></span> seek him everywhere. Is he in heaven, or is he in… Hell? That d**n, Eh-Loo-sivvv, Pim-pernehl!"
+      <br/><br/>— <em>Sir Percival Blanknear, Baronette</em>
+    </blockquote>
+    <p>What time is it right now? It is 11:45 am. I have circuits in exactly 75 minutes!!! Oh NO!!!</p>
+  </div>
+
+  <div class="section">
+    <div class="rabbit-hole">
+      <span>What was my thesis again? I don't know if I forgot. I have a new thesis, actually:</span>
+      <span>What was I trying to remember? My dream last night was crazy!!!</span>
+      <span>This is getting old, old sport.</span>
+      <span>Yes, you are becoming older sport, old sport.</span>
+      <span>Well, who are you talking to now,</span>
+      <span>old sport or older sport, old sport?</span>
+    </div>
+    <p style="font-size:13px; color:var(--faded); text-align:center; font-style:italic;">[It's called a calligram. Yes, surprisingly enough, I do pay attention in poetry class.]</p>
+  </div>
+
+  <div class="section">
+    <p>
+      Why is an engineer taking English classes? Pshshst, that's a stupid question. And so, I will give you the dumbest answer imaginable, like literally.
+    </p>
+    <p>
+      A formal definition of <em>engineer</em> comes from the Latin word for ingenuity. And yes, contrary to popular belief, engineers actually DO drive trains.<span class="fn"><span class="fn-marker">4</span><span class="fn-bubble">♫ Last train to London ♫ …Wait what!?!?!?!</span></span> Actually, conductors drive trains. Who are conductors? I'm glad you asked<span class="fn"><span class="fn-marker">5</span><span class="fn-bubble">No one asked, bud.</span></span>: Conductors are a type of material that allows the flow of charge or electrical current in one direction or another. Conductors love to be the center of attention, waving the magic wand in their hand while all the other players in the choir and orchestra play their instruments at their beck and call.
+    </p>
+    <p>
+      Some famous conductors include: gold, silver, copper, aluminum, John Williams, Gustav Holst (who does not get nearly enough recognition for his lovely Planets suite!), Cornelius Vanderbilt, Collis P. Huntington, Leonard Bernstein, Vivaldi, Bach, Mercury, Steel, Iron, Seawater (my favorite conductor, actually — his work on the piano is fascinatingly corrosive), Leland Stanford, and Charles Crocker. All of these high-profile conductors are on equal footing, of course, and ought to be analyzed with careful consideration of their life's work.
+    </p>
+  </div>
+
+  <div class="section">
+    <p>
+      So why am I electing to bleed money to be depressed when I can actually be happy and not dead inside? I am so glad you asked!!!<span class="fn"><span class="fn-marker">6</span><span class="fn-bubble">Yeah, didn't ask that time either. You need therapy man.</span></span>
+    </p>
+    <p>
+      If I study hard enough to become an engineer, I will receive my own train.<span class="fn"><span class="fn-marker">7</span><span class="fn-bubble">I'm not sure that's how it works…</span></span> When I have my own train, I can sell tickets and collect fares, just like the <em>bour·geoi·sie</em>. When I become the <em>bour·geoi·sie</em>, I can invite the other <em>bour·geoi·sie</em> onto my train. Guess what?<span class="fn"><span class="fn-marker">8</span><span class="fn-bubble">What?</span></span> All conductors are a part of the <em>bour·geoi·sie</em>!!!<span class="fn"><span class="fn-marker">9</span><span class="fn-bubble">No, that's just a communist conspiracy, I'm pretty sure.</span></span> You know what that means?<span class="fn"><span class="fn-marker">10</span><span class="fn-bubble">Ughg, what does it mean?</span></span>
+    </p>
+    <p>
+      I can sell a ticket to that mean old guy who kicked me off of his train.<span class="fn"><span class="fn-marker">11</span><span class="fn-bubble">That's just stupid.</span></span> When I sell him a ticket, it will be fake!<span class="fn"><span class="fn-marker">12</span><span class="fn-bubble">Good luck explaining the confederacy to the authorities.</span></span> When I collect his ticket, I will find out that it's fake!<span class="fn"><span class="fn-marker">13</span><span class="fn-bubble">You must have dementia, because you clearly forgot that it was you who made the fake ticket in the first place… Man, this guy is actually an idiot.</span></span> When I find out it's fake, I will tell him with all the collected grace and poise of the <em>bour·geoi·sie</em>: <span class="highlight">"I'm sorry sir, you can't sit here in this cabin. I am going to have to ask that you depart from the train at once."</span>
+    </p>
+    <p>
+      Then he will tell me something like, "But my mother wouldn't want me doing something as dangerous as jumping off a moving train at full speed."<span class="fn"><span class="fn-marker">14</span><span class="fn-bubble">Gee, I wonder where I've heard that before?</span></span> And I will stand there, staring off in the distance, ready to destroy this man's entire career: <strong>"I can wait…"</strong>
+    </p>
+    <p class="final-line">BOOOM!!! Rejected!!! Ladies and Gentlemen… We Got Em!!!</p>
+  </div>
+
+  <div class="section">
+    <p>
+      So that's my logical argument for why I am willing to suffer for 5 years of my youth trying my hardest to get an engineering degree. A degree → a free train → social status as the <em>bour·geoi·sie</em> → other <em>bour·geoi·sie</em> wanting a ride → the Grinch riding my train → my ultimate revenge story.<span class="fn"><span class="fn-marker">16</span><span class="fn-bubble">How are you not in a mental health ward?</span></span>
+    </p>
+    <p>
+      <span class="underline">NO, MY NAME ISN'T HEATHCLIFF!!!!!</span> I think I will name my train Heathcliff though, it has a nice ring to it. That or Thomas. Thomas the Tank Engine is my favorite tank engine!!! <em>They're two, they're four, they're six, they're eight… This paper better help raise my GPA, mate!</em>
+    </p>
+    <p>
+      Have I told you about how Thomas the Tank Engine is actually just an allegory for the corruption within a capitalistic society founded upon the greed of railroad tycoons? (Kaczynski)
+    </p>
+    <p>
+      Once upon a time…… Geez, I'm hungry now. I'm off to get some chicken, maybe some Kentucky Fried Chicken. Why? Cuz it's fingerlickin' good!!!.... and my favorite color is gr—
+    </p>
+  </div>
+
+  <div class="works-cited section">
+    <h2>Works Cited</h2>
+    <p>Thomas Train Character Guide. "Thomas and Friends Alfie the Excavator Character Guide." <em>Welcome to Thomas Train Character Guide</em>, thomas-train-character-guide.com.</p>
+    <p style="margin-top:10px;">Kaczynski, Theodore John. <em>The Unabomber Manifesto: Industrial Society and Its Future.</em> Filiquarian Publishing, LLC, 2005.</p>
+  </div>
+
+</div>
+<script>
+  document.querySelectorAll('.fn').forEach(fn => {
+    const marker = fn.querySelector('.fn-marker');
+    const bubble = fn.querySelector('.fn-bubble');
+    marker.addEventListener('click', e => {
+      e.stopPropagation();
+      const isOpen = fn.classList.contains('open');
+      document.querySelectorAll('.fn.open').forEach(f => f.classList.remove('open'));
+      if (!isOpen) {
+        fn.classList.add('open');
+        // reposition bubble if it overflows viewport
+        bubble.classList.remove('flip-left','flip-right');
+        const rect = bubble.getBoundingClientRect();
+        if (rect.left < 8) bubble.classList.add('flip-left');
+        else if (rect.right > window.innerWidth - 8) bubble.classList.add('flip-right');
+      }
+    });
+  });
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.fn.open').forEach(f => f.classList.remove('open'));
+  });
+</script>
+</body>
+</html>
