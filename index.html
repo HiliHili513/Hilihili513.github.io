@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Lamentación Cristera — Súplica de los hijos moribundos a la Virgen Morena del Tepeyac. Una oración poética en el espíritu de los mártires Cristeros de México.">
+<title>Lamentación Cristera · Virgen del Tepeyac</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+DW+Pica:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --parchment: #f5efe0;
+    --parchment-dark: #ede3cc;
+    --ink: #1a0e00;
+    --ink-faded: #3d2b10;
+    --gold: #8b6914;
+    --gold-light: #b8912a;
+    --blood: #6b1a1a;
+    --border: #7a5c2a;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #2a1f0e;
+    background-image:
+      radial-gradient(ellipse at top, #3d2b10 0%, #1a0e00 70%);
+    min-height: 100vh;
+    font-family: 'IM Fell English', 'Georgia', serif;
+    color: var(--ink);
+    padding: 2rem 1rem 4rem;
+  }
+
+  .page-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  /* Header above manuscript */
+  .site-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem 0;
+  }
+
+  .site-header .cross {
+    font-size: 2rem;
+    color: var(--gold-light);
+    letter-spacing: 0.3em;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .site-header .site-title {
+    font-family: 'IM Fell DW Pica', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--gold-light);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  /* Manuscript */
+  .manuscript {
+    background: var(--parchment);
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 29px,
+        rgba(139,105,20,0.07) 29px,
+        rgba(139,105,20,0.07) 30px
+      ),
+      radial-gradient(ellipse at top left, #fdf6e3 0%, #f0e6ca 100%);
+    border: 1px solid var(--border);
+    box-shadow:
+      0 0 0 1px rgba(139,105,20,0.2),
+      0 8px 40px rgba(0,0,0,0.6),
+      inset 0 0 60px rgba(139,105,20,0.08);
+    padding: 4rem 4.5rem;
+    position: relative;
+  }
+
+  /* Inner border frame */
+  .manuscript::before {
+    content: '';
+    position: absolute;
+    inset: 18px;
+    border: 1px solid rgba(139,105,20,0.25);
+    pointer-events: none;
+  }
+
+  .ornament-top {
+    text-align: center;
+    font-size: 1.6rem;
+    color: var(--gold);
+    letter-spacing: 0.4em;
+    margin-bottom: 0.5rem;
+  }
+
+  .title-block {
+    text-align: center;
+    border-top: 2px solid var(--gold);
+    border-bottom: 2px solid var(--gold);
+    padding: 1.4rem 2rem;
+    margin: 0 1rem 2.8rem;
+  }
+
+  .title-main {
+    font-family: 'IM Fell DW Pica', serif;
+    font-size: 1.7rem;
+    font-style: italic;
+    color: var(--blood);
+    letter-spacing: 0.05em;
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+  }
+
+  .title-sub {
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.6;
+  }
+
+  /* Body text */
+  .section {
+    margin-bottom: 1.8rem;
+    text-align: justify;
+    hyphens: auto;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--ink);
+  }
+
+  .section p + p {
+    text-indent: 1.5em;
+  }
+
+  /* Drop cap */
+  .drop-cap::first-letter {
+    font-family: 'IM Fell DW Pica', serif;
+    font-size: 4.8rem;
+    float: left;
+    line-height: 0.75;
+    margin: 0.1em 0.1em 0 0;
+    color: var(--blood);
+    font-style: italic;
+  }
+
+  /* Poetic cry / lament stanzas */
+  .cry {
+    font-family: 'IM Fell DW Pica', serif;
+    font-style: italic;
+    font-size: 1.12rem;
+    color: var(--blood);
+    text-align: center;
+    margin: 2.2rem 0 2rem;
+    letter-spacing: 0.03em;
+    line-height: 1.9;
+  }
+
+  .cry .cry-line {
+    display: block;
+  }
+
+  /* Seven sorrows */
+  .sorrows-block {
+    margin: 1.5rem 0 1.5rem 1rem;
+    border-left: 2px solid var(--gold);
+    padding-left: 1.4rem;
+  }
+
+  .sorrow-item {
+    margin: 0.85rem 0;
+    font-style: italic;
+    color: var(--ink-faded);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .sorrow-num {
+    font-family: 'IM Fell DW Pica', serif;
+    font-style: normal;
+    color: var(--blood);
+    font-size: 0.95rem;
+    margin-right: 0.35em;
+  }
+
+  /* Ornament divider */
+  .ornament-mid {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1rem;
+    letter-spacing: 0.6em;
+    margin: 2.2rem 0;
+    opacity: 0.65;
+  }
+
+  /* Closing prayer */
+  .closing-prayer {
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+    font-style: italic;
+    text-align: center;
+    color: var(--ink-faded);
+    line-height: 2;
+    font-size: 1.05rem;
+  }
+
+  .amen {
+    font-family: 'IM Fell DW Pica', serif;
+    font-style: italic;
+    font-size: 1.8rem;
+    color: var(--blood);
+    text-align: center;
+    margin-top: 2rem;
+    letter-spacing: 0.12em;
+  }
+
+  .battle-cry {
+    border-top: 1px solid rgba(139,105,20,0.35);
+    margin-top: 3rem;
+    padding-top: 1rem;
+    font-size: 0.78rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-align: center;
+    font-style: italic;
+    line-height: 2.2;
+  }
+
+  /* Footer */
+  .site-footer {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.75rem;
+    color: rgba(184,145,42,0.5);
+    font-style: italic;
+    letter-spacing: 0.1em;
+  }
+
+  /* Print styles */
+  @media print {
+    body {
+      background: white;
+      padding: 0;
+    }
+    .manuscript {
+      box-shadow: none;
+      border: 1px solid #ccc;
+      padding: 2.5rem 3rem;
+    }
+    .manuscript::before { display: none; }
+    .site-header, .site-footer { display: none; }
+    .page-wrap { max-width: 100%; }
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    body { padding: 1rem 0.5rem 3rem; }
+    .manuscript { padding: 2.5rem 1.5rem; }
+    .manuscript::before { inset: 10px; }
+    .title-main { font-size: 1.3rem; }
+    .cry { font-size: 1rem; }
+    .drop-cap::first-letter { font-size: 3.8rem; }
+    .title-block { margin: 0 0 2rem; padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <header class="site-header">
+    <span class="cross">✦ ✦ ✦</span>
+    <span class="site-title">¡Viva Cristo Rey! · ¡Viva la Virgen de Guadalupe!</span>
+  </header>
+
+  <main class="manuscript" role="main">
+
+    <div class="ornament-top" aria-hidden="true">✦ ✦ ✦</div>
+
+    <div class="title-block">
+      <h1 class="title-main">Lamentación Cristera</h1>
+      <p class="title-sub">Súplica de los hijos moribundos a la Virgen Morena del Tepeyac</p>
+    </div>
+
+    <div class="section drop-cap">
+      Dios te salve, María, Trono de la Sabiduría, que pasaste por la espada de tu pureza al inmundo gusano volador del abismo, al dragón de las tinieblas eternas. A Ti clamamos, hijos tuyos que agonizan de hambre y de heridas, mestizos de la Nueva España, México sagrado, suelo de nuestra sangre y de nuestros muertos.
+    </div>
+
+    <div class="section">
+      A Ti te saludamos como Madre, venerable Arca de la Alianza nueva que Dios sellara en la sangre de Jesucristo nuestro Rey. ¿Por qué, pues, has desamparado a tus hijos devastados, a nosotros que lloramos ante Ti, Madre del Pastor de nuestras almas, Tú que juraste ser nuestra Madre sobre el nevado cerro del Tepeyac hace ya quinientos años?
+    </div>
+
+    <div class="cry" role="doc-epigraph">
+      <span class="cry-line">¿Adónde fue la corona de la Reina del Cielo,</span>
+      <span class="cry-line">que aplastó la cabeza de la serpiente</span>
+      <span class="cry-line">que aún avanza sobre nosotros,</span>
+      <span class="cry-line">movida de envidia a tu amor</span>
+      <span class="cry-line">y de odio a nuestro Salvador y Campeón,</span>
+      <span class="cry-line">Jesucristo el Señor?</span>
+    </div>
+
+    <div class="section">
+      ¿Habrás de mantenerte pasiva mientras los enemigos de Tu nombre raptan a tus hijos santos, los asesinan, arrojan nuestros preciosos vasos sagrados a las cunetas, a nuestros hermanos y hermanas, desechados cual tierra sin valor? ¿Qué fue, entonces, de las promesas de Dios, de que Tu intercesión, poderosa como el trueno, había de sellar con el hierro ardiente la cabeza del diablo, haciéndola estallar como sus mazas han partido los cráneos de nuestros hijos en un nuevo sacrificio satánico, en una nueva piedra azteca de inmolación?
+    </div>
+
+    <div class="ornament-mid" aria-hidden="true">✦ · ✦ · ✦</div>
+
+    <div class="section">
+      ¿No has sentido compasión alguna por nosotros en nuestros propios siete dolores, aun cuando hemos derramado nuestras lágrimas por amor y por aflicción ante los Tuyos? He aquí los siete cuchillos que han traspasado nuestra alma de pueblo:
+    </div>
+
+    <div class="sorrows-block">
+      <div class="sorrow-item"><span class="sorrow-num">I.</span>Los ultrajes recibidos a manos de los soldados de España.</div>
+      <div class="sorrow-item"><span class="sorrow-num">II.</span>La profanación de nuestra tierra por las mentiras de las «destinaciones manifiestas» de potencias extranjeras.</div>
+      <div class="sorrow-item"><span class="sorrow-num">III.</span>La creación por el demonio de la primera constitución socialista del mundo.</div>
+      <div class="sorrow-item"><span class="sorrow-num">IV.</span>La perversión de nuestros derechos y amparo para arrodillarnos ante Tu Hijo, Jesucristo nuestro Rey vivo.</div>
+      <div class="sorrow-item"><span class="sorrow-num">V.</span>Los setenta y un años de Cautiverio Babilónico bajo el cetro voraz del PRI.</div>
+      <div class="sorrow-item"><span class="sorrow-num">VI.</span>El violento resurgir del Cóndor mítico, que levanta altares de narcotráfico y sacrificios de sangre en el corazón mismo de nuestra pacífica patria.</div>
+      <div class="sorrow-item"><span class="sorrow-num">VII.</span>La gran apostasía de nuestros hijos que se alejan de Tu precioso seno en su peregrinación de regreso al Aztlán.</div>
+    </div>
+
+    <div class="cry">
+      <span class="cry-line">¿Dónde estás, Madre Bendita?</span>
+      <span class="cry-line">¿Dónde te encuentras, Madre amorosa?</span>
+      <span class="cry-line">¿Dónde está la Virgen Morena?</span>
+      <span class="cry-line">¿Dónde está Nuestra Santa Madre?</span>
+      <span class="cry-line">¿Adónde desapareció el Tepeyac?</span>
+      <span class="cry-line">¿Por qué Nuestra Madre nos ha entregado</span>
+      <span class="cry-line">a la adopción del diablo</span>
+      <span class="cry-line">y a los peores tormentos del mundo?</span>
+    </div>
+
+    <div class="section">
+      ¿Cuándo veremos derramarse en abundancia el Trueno de los clamores del Cielo por amor a nosotros? ¿No brotaron acaso aquellas palabras —más preciosas que los diamantes y más resplandecientes que las estrellas— de los labios sagrados que besaron el rostro de Cristo nuestro Rey, tanto en su santa infancia como en su vida de hombre, tanto en el Cielo como en la tierra, para que supiéramos con certeza que Tú eres en verdad la Virgen perfecta y perpetua María, Madre del Dios verdadero?
+    </div>
+
+    <div class="section">
+      ¿Seguimos siendo tus hijitos más pequeños? ¿Por qué enmudecieron las canciones de cuna de mi madre, y se detuvieron sus manos que acariciaban mis cabellos?
+    </div>
+
+    <div class="section">
+      Y sin embargo, aun en su silencio, nada me queda que ofrecerle en las profundidades de mis dolores, salvo esta pequeña rosa castellana que se atreve a brotar desde los inviernos de mi alma agonizante. Te ofrezco esta rosa, Madre amada, porque es lo último que me es dado dar. Me han quitado mi hogar, mi rey, mis hermanos y hermanas, a mi padre, y me han quitado la vida misma.
+    </div>
+
+    <div class="closing-prayer">
+      Sea esto, pues, nuestra prueba definitiva de que no cesaremos de saludarte,<br>
+      ni aun cuando nos partan el cráneo y nos quiebren el cuello;<br>
+      aun mientras clamamos a Ti, orando y esperando<br>
+      que vueles desde el Cielo y aplastes con furor<br>
+      la cabeza de la serpiente que me ha clavado<br>
+      sobre el altar del sufrimiento,<br>
+      para morir junto al Amado de Tu alma,<br>
+      mi Señor y Salvador Jesucristo.
+    </div>
+
+    <div class="amen">✦ Amén ✦</div>
+
+    <div class="battle-cry">
+      ¡Viva Cristo Rey! &nbsp;·&nbsp; ¡Viva la Virgen de Guadalupe! &nbsp;·&nbsp; ¡Viva México!
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Lamentación Cristera &nbsp;·&nbsp; In honorem Beatæ Mariæ Virginis de Guadalupe</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
